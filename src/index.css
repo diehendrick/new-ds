@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Design Tokens: Semantic Colors (Light Mode — default)
+   All tokens sourced from Figma 03 Semantic Color collection
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* textColor */
+    --color-text-default: #020618;
+    --color-text-secondary: #314158;
+    --color-text-muted: #45556c;
+    --color-text-placeholder: #62748e;
+    --color-text-disabled: #90a1b9;
+    --color-text-inverse: #f8fafc;
+    --color-text-brand: #c2410c;
+    --color-text-link: #c2410c;
+    --color-text-onBrand: #020618;
+    --color-text-onStatus: #ffffff;
+    --color-text-success: #008236;
+    --color-text-warning: #bb4d00;
+    --color-text-danger: #c10007;
+    --color-text-information: #1447e6;
+
+    /* bgColor */
+    --color-bg-canvas: #f8fafc;
+    --color-bg-surface: #ffffff;
+    --color-bg-elevated: #ffffff;
+    --color-bg-subtle: #f1f5f9;
+    --color-bg-inverse: #020618;
+    --color-bg-brand-default: #f97316;
+    --color-bg-brand-hover: #ea580c;
+    --color-bg-brand-pressed: #ea580c;
+    --color-bg-brand-subtle: #fff7ed;
+    --color-bg-selected: #ffedd5;
+    --color-bg-hover: #f1f5f9;
+    --color-bg-pressed: #e2e8f0;
+    --color-bg-disabled: #f1f5f9;
+    --color-bg-success-default: #008236;
+    --color-bg-success-subtle: #f0fdf4;
+    --color-bg-warning-default: #bb4d00;
+    --color-bg-warning-subtle: #fffbeb;
+    --color-bg-danger-default: #c10007;
+    --color-bg-danger-subtle: #fef2f2;
+    --color-bg-information-default: #1447e6;
+    --color-bg-information-subtle: #eff6ff;
+
+    /* strokeColor */
+    --color-stroke-default: #cad5e2;
+    --color-stroke-subtle: #e2e8f0;
+    --color-stroke-strong: #90a1b9;
+    --color-stroke-disabled: #e2e8f0;
+    --color-stroke-brand: #f97316;
+    --color-stroke-success: #008236;
+    --color-stroke-warning: #bb4d00;
+    --color-stroke-danger: #c10007;
+    --color-stroke-information: #1447e6;
+    --color-stroke-hover: #90a1b9;
+    --color-stroke-focus: #2b7fff;
+  }
+
+  /* Dark mode overrides */
+  [data-theme="dark"] {
+    /* textColor */
+    --color-text-default: #f8fafc;
+    --color-text-secondary: #cad5e2;
+    --color-text-muted: #90a1b9;
+    --color-text-placeholder: #90a1b9;
+    --color-text-disabled: #62748e;
+    --color-text-inverse: #0f172b;
+    --color-text-brand: #fb923c;
+    --color-text-link: #fb923c;
+    --color-text-onBrand: #020618;
+    --color-text-onStatus: #020618;
+    --color-text-success: #05df72;
+    --color-text-warning: #ffb900;
+    --color-text-danger: #ff6467;
+    --color-text-information: #51a2ff;
+
+    /* bgColor */
+    --color-bg-canvas: #020618;
+    --color-bg-surface: #0f172b;
+    --color-bg-elevated: #1d293d;
+    --color-bg-subtle: #1d293d;
+    --color-bg-inverse: #f8fafc;
+    --color-bg-brand-default: #fb923c;
+    --color-bg-brand-hover: #fdba74;
+    --color-bg-brand-pressed: #f97316;
+    --color-bg-brand-subtle: #431407;
+    --color-bg-selected: #7c2d12;
+    --color-bg-hover: #1d293d;
+    --color-bg-pressed: #314158;
+    --color-bg-disabled: #1d293d;
+    --color-bg-success-default: #05df72;
+    --color-bg-success-subtle: #032e15;
+    --color-bg-warning-default: #ffb900;
+    --color-bg-warning-subtle: #461901;
+    --color-bg-danger-default: #ff6467;
+    --color-bg-danger-subtle: #460809;
+    --color-bg-information-default: #51a2ff;
+    --color-bg-information-subtle: #162456;
+
+    /* strokeColor */
+    --color-stroke-default: #314158;
+    --color-stroke-subtle: #1d293d;
+    --color-stroke-strong: #62748e;
+    --color-stroke-disabled: #1d293d;
+    --color-stroke-brand: #fb923c;
+    --color-stroke-success: #05df72;
+    --color-stroke-warning: #ffb900;
+    --color-stroke-danger: #ff6467;
+    --color-stroke-information: #51a2ff;
+    --color-stroke-hover: #45556c;
+    --color-stroke-focus: #51a2ff;
+  }
+
+  /* Canvas background for Storybook / app shell */
+  body {
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-default);
+  }
+}
+

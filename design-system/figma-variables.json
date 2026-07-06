@@ -1,0 +1,60 @@
+{
+  "fileName": "Document",
+  "collectionCount": 4,
+  "variableCount": 218,
+  "semanticColorModes": ["Light", "Dark"],
+  "semanticColors": {
+    "textColor": {
+      "default": { "Light": "#020618", "Dark": "#f8fafc" },
+      "secondary": { "Light": "#314158", "Dark": "#cad5e2" },
+      "muted": { "Light": "#45556c", "Dark": "#90a1b9" },
+      "placeholder": { "Light": "#62748e", "Dark": "#90a1b9" },
+      "disabled": { "Light": "#90a1b9", "Dark": "#62748e" },
+      "inverse": { "Light": "#f8fafc", "Dark": "#0f172b" },
+      "brand": { "Light": "#c2410c", "Dark": "#fb923c" },
+      "link": { "Light": "#c2410c", "Dark": "#fb923c" },
+      "onBrand": { "Light": "#020618", "Dark": "#020618" },
+      "onStatus": { "Light": "#ffffff", "Dark": "#020618" },
+      "success": { "Light": "#008236", "Dark": "#05df72" },
+      "warning": { "Light": "#bb4d00", "Dark": "#ffb900" },
+      "danger": { "Light": "#c10007", "Dark": "#ff6467" },
+      "information": { "Light": "#1447e6", "Dark": "#51a2ff" }
+    },
+    "bgColor": {
+      "canvas": { "Light": "#f8fafc", "Dark": "#020618" },
+      "surface": { "Light": "#ffffff", "Dark": "#0f172b" },
+      "elevated": { "Light": "#ffffff", "Dark": "#1d293d" },
+      "subtle": { "Light": "#f1f5f9", "Dark": "#1d293d" },
+      "inverse": { "Light": "#020618", "Dark": "#f8fafc" },
+      "brand_default": { "Light": "#f97316", "Dark": "#fb923c" },
+      "brand_hover": { "Light": "#ea580c", "Dark": "#fdba74" },
+      "brand_pressed": { "Light": "#ea580c", "Dark": "#f97316" },
+      "brand_subtle": { "Light": "#fff7ed", "Dark": "#431407" },
+      "selected": { "Light": "#ffedd5", "Dark": "#7c2d12" },
+      "hover": { "Light": "#f1f5f9", "Dark": "#1d293d" },
+      "pressed": { "Light": "#e2e8f0", "Dark": "#314158" },
+      "disabled": { "Light": "#f1f5f9", "Dark": "#1d293d" },
+      "success_default": { "Light": "#008236", "Dark": "#05df72" },
+      "success_subtle": { "Light": "#f0fdf4", "Dark": "#032e15" },
+      "warning_default": { "Light": "#bb4d00", "Dark": "#ffb900" },
+      "warning_subtle": { "Light": "#fffbeb", "Dark": "#461901" },
+      "danger_default": { "Light": "#c10007", "Dark": "#ff6467" },
+      "danger_subtle": { "Light": "#fef2f2", "Dark": "#460809" },
+      "information_default": { "Light": "#1447e6", "Dark": "#51a2ff" },
+      "information_subtle": { "Light": "#eff6ff", "Dark": "#162456" }
+    },
+    "strokeColor": {
+      "default": { "Light": "#cad5e2", "Dark": "#314158" },
+      "subtle": { "Light": "#e2e8f0", "Dark": "#1d293d" },
+      "strong": { "Light": "#90a1b9", "Dark": "#62748e" },
+      "disabled": { "Light": "#e2e8f0", "Dark": "#1d293d" },
+      "brand": { "Light": "#f97316", "Dark": "#fb923c" },
+      "success": { "Light": "#008236", "Dark": "#05df72" },
+      "warning": { "Light": "#bb4d00", "Dark": "#ffb900" },
+      "danger": { "Light": "#c10007", "Dark": "#ff6467" },
+      "information": { "Light": "#1447e6", "Dark": "#51a2ff" },
+      "hover": { "Light": "#90a1b9", "Dark": "#45556c" },
+      "focus": { "Light": "#2b7fff", "Dark": "#51a2ff" }
+    }
+  }
+}
