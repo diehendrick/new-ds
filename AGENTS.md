@@ -20,12 +20,16 @@ src/
   main.ts                 # Webpack config (webpack5, babel TS, PostCSS/Tailwind, figma mock)
   preview.ts              # Preview config + global theme toolbar
   figma-mock.ts           # Browser-safe mock for @figma/code-connect
+.github/
+  workflows/
+    chromatic.yml         # CI: Chromatic visual tests on push
 design-system/
   figma-variables.json    # Canonical token source (218 variables, 4 collections)
 tailwind.config.js        # Tailwind v3: primitives, semantic CSS vars, dimensions, typography
 figma.config.json         # Code Connect: React JSX label, watches **/*.figma.ts
 postcss.config.js         # PostCSS with tailwindcss + autoprefixer
 AGENTS.md                 # This file
+README.md                 # Project README
 ```
 
 ## Key Commands
@@ -106,3 +110,12 @@ The Storybook toolbar includes a Theme toggle (sun/moon icon) for switching mode
 - `figma.config.json` watches `**/*.figma.ts` for Code Connect publishing
 - Theme switching is global via `globalTypes.theme` in `preview.ts`
 - Chromatic publishes via `npx chromatic --project-token=<token>` using the `build-storybook` script
+
+## CI (GitHub Actions)
+
+Visual regression tests run on every push via `.github/workflows/chromatic.yml`:
+
+- Triggers on `push` (excludes `dependabot/**`, `renovate/**`)
+- Uses `chromaui/action@latest` with `exitZeroOnChanges: true`
+- Requires `CHROMATIC_PROJECT_TOKEN` secret in repo Settings → Secrets → Actions
+- Posts PR status checks for UI Tests on every pull request
