@@ -2,6 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-family-sans);
   font: var(--typography-label-large);
   font-weight: var(--font-weight-semibold);
   white-space: nowrap;

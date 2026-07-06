@@ -133,6 +133,7 @@
   background: transparent;
   border: none;
   outline: none;
+  font-family: var(--font-family-sans);
   font: var(--typography-body-medium);
   color: var(--color-text-default);
 }
