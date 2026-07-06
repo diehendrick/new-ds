@@ -3,121 +3,266 @@
 @tailwind utilities;
 
 /* ============================================================
-   Design Tokens: Semantic Colors (Light Mode — default)
-   All tokens sourced from Figma 03 Semantic Color collection
+   Design Tokens
+   All tokens sourced from Figma variables (4 collections, 218 variables)
    ============================================================ */
 
 @layer base {
+  /* ----------------------------------------------------------
+     Primitive Colors
+     ---------------------------------------------------------- */
   :root {
-    /* textColor */
-    --color-text-default: #020618;
-    --color-text-secondary: #314158;
-    --color-text-muted: #45556c;
-    --color-text-placeholder: #62748e;
-    --color-text-disabled: #90a1b9;
-    --color-text-inverse: #f8fafc;
-    --color-text-brand: #c2410c;
-    --color-text-link: #c2410c;
-    --color-text-onBrand: #020618;
-    --color-text-onStatus: #ffffff;
-    --color-text-success: #008236;
-    --color-text-warning: #bb4d00;
-    --color-text-danger: #c10007;
-    --color-text-information: #1447e6;
+    --brand-50: #fff7ed;
+    --brand-100: #ffedd5;
+    --brand-200: #fed7aa;
+    --brand-300: #fdba74;
+    --brand-400: #fb923c;
+    --brand-500: #f97316;
+    --brand-600: #ea580c;
+    --brand-700: #c2410c;
+    --brand-800: #9a3412;
+    --brand-900: #7c2d12;
+    --brand-950: #431407;
 
-    /* bgColor */
-    --color-bg-canvas: #f8fafc;
-    --color-bg-surface: #ffffff;
-    --color-bg-elevated: #ffffff;
-    --color-bg-subtle: #f1f5f9;
-    --color-bg-inverse: #020618;
-    --color-bg-brand-default: #f97316;
-    --color-bg-brand-hover: #ea580c;
-    --color-bg-brand-pressed: #ea580c;
-    --color-bg-brand-subtle: #fff7ed;
-    --color-bg-selected: #ffedd5;
-    --color-bg-hover: #f1f5f9;
-    --color-bg-pressed: #e2e8f0;
-    --color-bg-disabled: #f1f5f9;
-    --color-bg-success-default: #008236;
-    --color-bg-success-subtle: #f0fdf4;
-    --color-bg-warning-default: #bb4d00;
-    --color-bg-warning-subtle: #fffbeb;
-    --color-bg-danger-default: #c10007;
-    --color-bg-danger-subtle: #fef2f2;
-    --color-bg-information-default: #1447e6;
-    --color-bg-information-subtle: #eff6ff;
+    --neutral-50: #f8fafc;
+    --neutral-100: #f1f5f9;
+    --neutral-200: #e2e8f0;
+    --neutral-300: #cad5e2;
+    --neutral-400: #90a1b9;
+    --neutral-500: #62748e;
+    --neutral-600: #45556c;
+    --neutral-700: #314158;
+    --neutral-800: #1d293d;
+    --neutral-900: #0f172b;
+    --neutral-950: #020618;
 
-    /* strokeColor */
-    --color-stroke-default: #cad5e2;
-    --color-stroke-subtle: #e2e8f0;
-    --color-stroke-strong: #90a1b9;
-    --color-stroke-disabled: #e2e8f0;
-    --color-stroke-brand: #f97316;
-    --color-stroke-success: #008236;
-    --color-stroke-warning: #bb4d00;
-    --color-stroke-danger: #c10007;
-    --color-stroke-information: #1447e6;
-    --color-stroke-hover: #90a1b9;
-    --color-stroke-focus: #2b7fff;
+    --red-50: #fef2f2;
+    --red-100: #ffe2e2;
+    --red-200: #ffc9c9;
+    --red-300: #ffa2a2;
+    --red-400: #ff6467;
+    --red-500: #fb2c36;
+    --red-600: #e7000b;
+    --red-700: #c10007;
+    --red-800: #9f0712;
+    --red-900: #82181a;
+    --red-950: #460809;
+
+    --amber-50: #fffbeb;
+    --amber-100: #fef3c6;
+    --amber-200: #fee685;
+    --amber-300: #ffd230;
+    --amber-400: #ffb900;
+    --amber-500: #fe9a00;
+    --amber-600: #e17100;
+    --amber-700: #bb4d00;
+    --amber-800: #973c00;
+    --amber-900: #7b3306;
+    --amber-950: #461901;
+
+    --green-50: #f0fdf4;
+    --green-100: #dcfce7;
+    --green-200: #b9f8cf;
+    --green-300: #7bf1a8;
+    --green-400: #05df72;
+    --green-500: #00c950;
+    --green-600: #00a63e;
+    --green-700: #008236;
+    --green-800: #016630;
+    --green-900: #0d542b;
+    --green-950: #032e15;
+
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bedbff;
+    --blue-300: #8ec5ff;
+    --blue-400: #51a2ff;
+    --blue-500: #2b7fff;
+    --blue-600: #155dfc;
+    --blue-700: #1447e6;
+    --blue-800: #193cb8;
+    --blue-900: #1c398e;
+    --blue-950: #162456;
+
+    --base-white: #ffffff;
+    --base-black: #000000;
+    --base-transparent: transparent;
   }
 
-  /* Dark mode overrides */
+  /* ----------------------------------------------------------
+     Primitive Dimensions
+     ---------------------------------------------------------- */
+  :root {
+    --size-control-small: 32px;
+    --size-control-medium: 40px;
+    --size-control-large: 48px;
+
+    --space-xs: 4px;
+    --space-sm: 6px;
+    --space-md: 8px;
+    --space-lg: 12px;
+    --space-xl: 16px;
+    --space-2xl: 20px;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-focus: 10px;
+
+    --size-icon-small: 16px;
+    --size-icon-medium: 20px;
+    --size-icon-large: 24px;
+
+    --border-width-default: 1px;
+    --border-width-focus: 2px;
+  }
+
+  /* ----------------------------------------------------------
+     Primitive Typography
+     ---------------------------------------------------------- */
+  :root {
+    --font-family-sans: 'Nunito', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --letter-spacing-normal: 0px;
+    --letter-spacing-tight: -0.4px;
+  }
+
+  /* Typography shorthands */
+  :root {
+    /* Label/Medium: 600 12px/16px */
+    --typography-label-medium: 600 12px/16px var(--font-family-sans);
+    /* Label/Large: 600 14px/20px */
+    --typography-label-large: 600 14px/20px var(--font-family-sans);
+    /* Body/Medium/Regular: 400 14px/20px */
+    --typography-body-medium: 400 14px/20px var(--font-family-sans);
+    /* Body/Large/Regular: 400 16px/24px */
+    --typography-body-large: 400 16px/24px var(--font-family-sans);
+    /* Caption/Small: 400 11px/16px */
+    --typography-caption-small: 400 11px/16px var(--font-family-sans);
+    /* Caption/Regular: 400 12px/16px */
+    --typography-caption-regular: 400 12px/16px var(--font-family-sans);
+  }
+
+  /* ----------------------------------------------------------
+     Semantic Colors — Light mode (default)
+     ---------------------------------------------------------- */
+  :root {
+    --color-text-default: var(--neutral-950);
+    --color-text-secondary: var(--neutral-700);
+    --color-text-muted: var(--neutral-600);
+    --color-text-placeholder: var(--neutral-500);
+    --color-text-disabled: var(--neutral-400);
+    --color-text-inverse: var(--neutral-50);
+    --color-text-brand: var(--brand-700);
+    --color-text-link: var(--brand-700);
+    --color-text-onBrand: var(--neutral-950);
+    --color-text-onStatus: var(--base-white);
+    --color-text-success: var(--green-700);
+    --color-text-warning: var(--amber-700);
+    --color-text-danger: var(--red-700);
+    --color-text-information: var(--blue-700);
+
+    --color-bg-canvas: var(--neutral-50);
+    --color-bg-surface: var(--base-white);
+    --color-bg-elevated: var(--base-white);
+    --color-bg-subtle: var(--neutral-100);
+    --color-bg-inverse: var(--neutral-950);
+    --color-bg-hover: var(--neutral-100);
+    --color-bg-pressed: var(--neutral-200);
+    --color-bg-disabled: var(--neutral-100);
+    --color-bg-selected: var(--brand-100);
+
+    --color-bg-brand-default: var(--brand-500);
+    --color-bg-brand-hover: var(--brand-600);
+    --color-bg-brand-pressed: var(--brand-600);
+    --color-bg-brand-subtle: var(--brand-50);
+
+    --color-bg-danger-default: var(--red-700);
+    --color-bg-danger-hover: var(--red-800);
+    --color-bg-danger-pressed: var(--red-900);
+    --color-bg-danger-subtle: var(--red-50);
+
+    --color-bg-success-default: var(--green-700);
+    --color-bg-success-subtle: var(--green-50);
+    --color-bg-warning-default: var(--amber-700);
+    --color-bg-warning-subtle: var(--amber-50);
+    --color-bg-information-default: var(--blue-700);
+    --color-bg-information-subtle: var(--blue-50);
+
+    --color-stroke-default: var(--neutral-300);
+    --color-stroke-subtle: var(--neutral-200);
+    --color-stroke-strong: var(--neutral-400);
+    --color-stroke-hover: var(--neutral-400);
+    --color-stroke-disabled: var(--neutral-200);
+    --color-stroke-focus: var(--blue-500);
+    --color-stroke-brand: var(--brand-500);
+    --color-stroke-danger: var(--red-500);
+    --color-stroke-success: var(--green-700);
+    --color-stroke-warning: var(--amber-500);
+    --color-stroke-information: var(--blue-500);
+  }
+
+  /* ----------------------------------------------------------
+     Semantic Colors — Dark mode overrides
+     ---------------------------------------------------------- */
   [data-theme="dark"] {
-    /* textColor */
-    --color-text-default: #f8fafc;
-    --color-text-secondary: #cad5e2;
-    --color-text-muted: #90a1b9;
-    --color-text-placeholder: #90a1b9;
-    --color-text-disabled: #62748e;
-    --color-text-inverse: #0f172b;
-    --color-text-brand: #fb923c;
-    --color-text-link: #fb923c;
-    --color-text-onBrand: #020618;
-    --color-text-onStatus: #020618;
-    --color-text-success: #05df72;
-    --color-text-warning: #ffb900;
-    --color-text-danger: #ff6467;
-    --color-text-information: #51a2ff;
+    --color-text-default: var(--neutral-50);
+    --color-text-secondary: var(--neutral-300);
+    --color-text-muted: var(--neutral-400);
+    --color-text-placeholder: var(--neutral-400);
+    --color-text-disabled: var(--neutral-500);
+    --color-text-inverse: var(--neutral-900);
+    --color-text-brand: var(--brand-400);
+    --color-text-link: var(--brand-400);
+    --color-text-onBrand: var(--neutral-950);
+    --color-text-onStatus: var(--neutral-950);
+    --color-text-success: var(--green-400);
+    --color-text-warning: var(--amber-400);
+    --color-text-danger: var(--red-400);
+    --color-text-information: var(--blue-400);
 
-    /* bgColor */
-    --color-bg-canvas: #020618;
-    --color-bg-surface: #0f172b;
-    --color-bg-elevated: #1d293d;
-    --color-bg-subtle: #1d293d;
-    --color-bg-inverse: #f8fafc;
-    --color-bg-brand-default: #fb923c;
-    --color-bg-brand-hover: #fdba74;
-    --color-bg-brand-pressed: #f97316;
-    --color-bg-brand-subtle: #431407;
-    --color-bg-selected: #7c2d12;
-    --color-bg-hover: #1d293d;
-    --color-bg-pressed: #314158;
-    --color-bg-disabled: #1d293d;
-    --color-bg-success-default: #05df72;
-    --color-bg-success-subtle: #032e15;
-    --color-bg-warning-default: #ffb900;
-    --color-bg-warning-subtle: #461901;
-    --color-bg-danger-default: #ff6467;
-    --color-bg-danger-subtle: #460809;
-    --color-bg-information-default: #51a2ff;
-    --color-bg-information-subtle: #162456;
+    --color-bg-canvas: var(--neutral-950);
+    --color-bg-surface: var(--neutral-900);
+    --color-bg-elevated: var(--neutral-800);
+    --color-bg-subtle: var(--neutral-800);
+    --color-bg-inverse: var(--neutral-50);
+    --color-bg-hover: var(--neutral-800);
+    --color-bg-pressed: var(--neutral-700);
+    --color-bg-disabled: var(--neutral-800);
+    --color-bg-selected: var(--brand-900);
 
-    /* strokeColor */
-    --color-stroke-default: #314158;
-    --color-stroke-subtle: #1d293d;
-    --color-stroke-strong: #62748e;
-    --color-stroke-disabled: #1d293d;
-    --color-stroke-brand: #fb923c;
-    --color-stroke-success: #05df72;
-    --color-stroke-warning: #ffb900;
-    --color-stroke-danger: #ff6467;
-    --color-stroke-information: #51a2ff;
-    --color-stroke-hover: #45556c;
-    --color-stroke-focus: #51a2ff;
+    --color-bg-brand-default: var(--brand-400);
+    --color-bg-brand-hover: var(--brand-300);
+    --color-bg-brand-pressed: var(--brand-500);
+    --color-bg-brand-subtle: var(--brand-950);
+
+    --color-bg-danger-default: var(--red-400);
+    --color-bg-danger-hover: var(--red-300);
+    --color-bg-danger-pressed: var(--red-500);
+    --color-bg-danger-subtle: var(--red-950);
+
+    --color-bg-success-default: var(--green-400);
+    --color-bg-success-subtle: var(--green-950);
+    --color-bg-warning-default: var(--amber-400);
+    --color-bg-warning-subtle: var(--amber-950);
+    --color-bg-information-default: var(--blue-400);
+    --color-bg-information-subtle: var(--blue-950);
+
+    --color-stroke-default: var(--neutral-700);
+    --color-stroke-subtle: var(--neutral-800);
+    --color-stroke-strong: var(--neutral-500);
+    --color-stroke-hover: var(--neutral-600);
+    --color-stroke-disabled: var(--neutral-800);
+    --color-stroke-focus: var(--blue-400);
+    --color-stroke-brand: var(--brand-400);
+    --color-stroke-danger: var(--red-500);
+    --color-stroke-success: var(--green-400);
+    --color-stroke-warning: var(--amber-400);
+    --color-stroke-information: var(--blue-400);
   }
 
-  /* Canvas background for Storybook / app shell */
   body {
     background-color: var(--color-bg-canvas);
     color: var(--color-text-default);

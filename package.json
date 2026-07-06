@@ -19,6 +19,7 @@
   "type": "commonjs",
   "dependencies": {
     "@figma/code-connect": "^1.4.8",
+    "clsx": "^2.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-icons": "^5.7.0"

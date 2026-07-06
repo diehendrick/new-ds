@@ -1,4 +1,5 @@
 import React, { useId, useRef, useState } from "react";
+import clsx from "clsx";
 import {
   MdAdd,
   MdCheck,
@@ -17,6 +18,7 @@ import {
   MdVisibility,
   MdVisibilityOff,
 } from "react-icons/md";
+import styles from "./TextField.module.css";
 
 type TextFieldSize = "Small" | "Medium" | "Large";
 type TextFieldInteraction = "Default" | "Hover" | "Disabled";
@@ -85,71 +87,17 @@ export interface TextFieldProps {
   defaultValue?: string;
 }
 
-// ============================================================================
-// Design Token Mappings
-// ============================================================================
+const sizeInputClasses = {
+  Small: styles.inputSmall,
+  Medium: styles.inputMedium,
+  Large: styles.inputLarge,
+} as const;
 
-const containerStyles: Record<TextFieldSize, string> = {
-  Small: "h-[32px] px-[8px] gap-[6px]",
-  Medium: "h-[40px] px-[12px] gap-[8px]",
-  Large: "h-[48px] px-[16px] gap-[8px]",
-};
-
-const iconSizeStyles: Record<TextFieldSize, string> = {
-  Small: "w-[16px] h-[16px]",
-  Medium: "w-[20px] h-[20px]",
-  Large: "w-[20px] h-[20px]",
-};
-
-const inputTextStyles: Record<TextFieldSize, string> = {
-  Small: "text-[14px] leading-[20px]",
-  Medium: "text-[14px] leading-[20px]",
-  Large: "text-[16px] leading-[24px]",
-};
-
-const labelTextStyles: Record<TextFieldSize, string> = {
-  Small: "text-[12px] leading-[16px]",
-  Medium: "text-[14px] leading-[20px]",
-  Large: "text-[14px] leading-[20px]",
-};
-
-const helperTextStyles: Record<TextFieldSize, string> = {
-  Small: "text-[11px] leading-[16px]",
-  Medium: "text-[12px] leading-[16px]",
-  Large: "text-[12px] leading-[16px]",
-};
-
-function getBorderClasses(
-  interaction: TextFieldInteraction,
-  validation: TextFieldValidation,
-  isFocused: boolean,
-): string {
-  if (interaction === "Disabled") {
-    return "border-semantic-border-disabled bg-semantic-bg-disabled";
-  }
-  if (validation === "Error") {
-    return "border-semantic-border-danger bg-semantic-bg-surface";
-  }
-  if (validation === "Success") {
-    return "border-semantic-border-success bg-semantic-bg-surface";
-  }
-  if (interaction === "Hover" || isFocused) {
-    return "border-semantic-border-hover bg-semantic-bg-surface";
-  }
-  return "border-semantic-border-default bg-semantic-bg-surface";
-}
-
-function getReadOnlyBg(interaction: TextFieldInteraction): string {
-  return interaction === "Disabled"
-    ? "bg-semantic-bg-disabled"
-    : "bg-semantic-bg-subtle";
-}
-
-function getFocusRingColor(validation: TextFieldValidation): string {
-  return validation === "Error"
-    ? "ring-red-600"
-    : "ring-semantic-border-focus";
-}
+const iconSizeClasses = {
+  Small: styles.iconSmall,
+  Medium: styles.iconMedium,
+  Large: styles.iconMedium,
+} as const;
 
 export function TextField({
   size = "Medium",
@@ -171,7 +119,7 @@ export function TextField({
   showTrailing = false,
   onTrailingClick,
   type = "text",
-  className = "",
+  className,
   defaultValue,
 }: TextFieldProps) {
   const generatedId = useId();
@@ -179,82 +127,72 @@ export function TextField({
   const [isFocused, setIsFocused] = useState(false);
 
   const isDisabled = disabled || interaction === "Disabled";
+  const isSmall = size === "Small";
+  const isLarge = size === "Large";
   const hasLeadingIcon = showLeading && leadingIconName !== "none";
   const hasTrailingIcon = showTrailing && trailingIconName !== "none";
-  const showStatusRow =
-    (validation === "Error" || validation === "Success") && !isDisabled;
-  const showHelperRow =
-    showSupportingText && validation === "None";
+  const showFocusRing = isFocused && !isDisabled && !readOnly;
+  const showStatusRow = (validation === "Error" || validation === "Success") && !isDisabled;
+  const showHelperRow = showSupportingText && validation === "None";
+  const isTrailingButton = hasTrailingIcon && !!onTrailingClick;
 
-  const renderIcon = (iconName: IconName, cls: string): React.ReactNode => {
+  const renderIcon = (iconName: IconName, cls?: string): React.ReactNode => {
     const IconComponent = ICON_MAP[iconName];
     if (!IconComponent) return null;
     return <IconComponent className={cls} />;
   };
 
-  const borderClasses = getBorderClasses(
-    isDisabled ? "Disabled" : interaction === "Hover" || isFocused ? "Hover" : "Default",
-    validation,
-    isFocused,
-  );
-
   return (
-    <div
-      className={`flex flex-col gap-[4px] w-full ${className}`}
-      data-size={size}
-      data-interaction={interaction}
-      data-validation={validation}
-    >
+    <div className={clsx(styles.root, className)}>
       {showLabel && (
         <label
           htmlFor={generatedId}
-          className={[
-            "font-sans font-semibold whitespace-nowrap truncate",
-            labelTextStyles[size],
-            isDisabled
-              ? "text-semantic-text-disabled"
-              : "text-semantic-text-default",
-          ].join(" ")}
+          className={clsx(
+            styles.label,
+            isSmall && styles.labelSmall,
+            isDisabled && styles.labelDisabled,
+          )}
         >
           {label}
-          {required && (
-            <span className="text-semantic-text-danger ml-[4px]">*</span>
-          )}
+          {required && <span className={styles.required}>*</span>}
         </label>
       )}
 
       <div
-        className={`relative`}
+        className={styles.field}
         onFocus={() => {
           if (!isDisabled && !readOnly) setIsFocused(true);
         }}
         onBlur={() => setIsFocused(false)}
       >
-        {isFocused && !isDisabled && !readOnly && (
+        {showFocusRing && (
           <div
-            className={[
-              "absolute border-2 border-solid inset-[-2px] rounded-[10px] pointer-events-none",
-              getFocusRingColor(validation),
-            ].join(" ")}
+            className={clsx(
+              styles.focusRing,
+              validation === "Error" && styles.focusRingError,
+            )}
           />
         )}
 
         <div
-          className={[
-            "flex items-center rounded-[8px] border w-full",
-            containerStyles[size],
-            readOnly ? getReadOnlyBg(isDisabled ? "Disabled" : "Default") : borderClasses,
-          ].join(" ")}
+          className={clsx(
+            styles.inputContainer,
+            sizeInputClasses[size],
+            validation === "Error" && styles.inputError,
+            validation === "Success" && styles.inputSuccess,
+            isDisabled && styles.inputDisabled,
+            readOnly && styles.inputReadOnly,
+          )}
         >
           {hasLeadingIcon && (
             <span
-              className={`shrink-0 ${iconSizeStyles[size]} ${
-                isDisabled
-                  ? "text-semantic-text-disabled"
-                  : "text-semantic-text-placeholder"
-              }`}
+              className={clsx(
+                styles.leadingIcon,
+                iconSizeClasses[size],
+                isDisabled && styles.leadingIconDisabled,
+              )}
             >
-              {renderIcon(leadingIconName, "w-full h-full")}
+              {renderIcon(leadingIconName)}
             </span>
           )}
 
@@ -268,74 +206,73 @@ export function TextField({
             placeholder={placeholder}
             disabled={isDisabled}
             readOnly={readOnly}
-            className={[
-              "flex-1 min-w-0 bg-transparent border-none outline-none font-sans font-normal",
-              inputTextStyles[size],
-              isDisabled
-                ? "text-semantic-text-disabled placeholder:text-semantic-text-disabled"
-                : "text-semantic-text-default placeholder:text-semantic-text-placeholder",
-            ].join(" ")}
+            className={clsx(
+              styles.input,
+              isLarge && styles.inputLargeFont,
+              isDisabled && styles.inputDisabled,
+            )}
           />
 
-          {hasTrailingIcon && (
+          {hasTrailingIcon && isTrailingButton ? (
             <button
               type="button"
-              disabled={isDisabled || !onTrailingClick}
+              disabled={isDisabled}
               onClick={(e) => {
                 e.stopPropagation();
                 onTrailingClick?.();
               }}
-              className={`shrink-0 ${iconSizeStyles[size]} ${
-                onTrailingClick && !isDisabled
-                  ? "cursor-pointer text-semantic-text-secondary hover:text-semantic-text-default"
-                  : isDisabled
-                    ? "text-semantic-text-disabled"
-                    : "text-semantic-text-placeholder"
-              }`}
-              tabIndex={onTrailingClick ? 0 : -1}
+              className={clsx(styles.trailingButton, iconSizeClasses[size])}
+              tabIndex={0}
             >
-              {renderIcon(trailingIconName, "w-full h-full")}
+              {renderIcon(trailingIconName)}
             </button>
-          )}
+          ) : hasTrailingIcon ? (
+            <span
+              className={clsx(
+                styles.trailingIcon,
+                styles.trailingIconStatic,
+                iconSizeClasses[size],
+              )}
+            >
+              {renderIcon(trailingIconName)}
+            </span>
+          ) : null}
         </div>
       </div>
 
       {showStatusRow && (
-        <div className="flex items-center gap-[4px] h-[16px]">
+        <div className={styles.statusRow}>
           {validation === "Error" && (
-            <span className="shrink-0 w-[16px] h-[16px] text-semantic-text-danger">
-              {renderIcon("Error", "w-full h-full")}
+            <span className={clsx(styles.statusIcon, styles.statusIconError)}>
+              {renderIcon("Error")}
             </span>
           )}
           {validation === "Success" && (
-            <span className="shrink-0 w-[16px] h-[16px] text-semantic-text-success">
-              {renderIcon("CheckCircle", "w-full h-full")}
+            <span className={clsx(styles.statusIcon, styles.statusIconSuccess)}>
+              {renderIcon("CheckCircle")}
             </span>
           )}
           <span
-            className={[
-              "font-sans font-normal truncate",
-              helperTextStyles[size],
-              validation === "Error"
-                ? "text-semantic-text-danger"
-                : "text-semantic-text-success",
-            ].join(" ")}
+            className={clsx(
+              styles.supportingText,
+              isSmall && styles.supportingTextSmall,
+              validation === "Error" && styles.supportingTextError,
+              validation === "Success" && styles.supportingTextSuccess,
+            )}
           >
             {supportingText}
           </span>
         </div>
       )}
 
-      {showHelperRow && !showStatusRow && (
-        <div className="flex items-center h-[16px]">
+      {showHelperRow && (
+        <div className={styles.helperRow}>
           <span
-            className={[
-              "font-sans font-normal truncate",
-              helperTextStyles[size],
-              isDisabled
-                ? "text-semantic-text-disabled"
-                : "text-semantic-text-secondary",
-            ].join(" ")}
+            className={clsx(
+              styles.helperText,
+              isSmall && styles.helperTextSmall,
+              isDisabled && styles.helperTextDisabled,
+            )}
           >
             {supportingText}
           </span>
